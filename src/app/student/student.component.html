@@ -1,0 +1,70 @@
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+<h2 class="text-light primary py-3">Student management</h2>
+<div class="d-flex">
+    <button class="btn btn-success me-1" data-toggle="modal" (click)="add()" data-target="#myModal">Add student</button>
+    <button class="btn btn-warning">Logout</button>
+</div>
+    </div>
+</nav>
+<table class="table mt-4">
+    <thead>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">mobile</th>
+        <th scope="col">city</th>
+        <th scope="col">action</th>
+
+    </thead>
+    <tbody *ngFor="let data of allstudentdata">
+        <tr>
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.mobile}}</td>
+            <td>{{data.city}}</td>
+            <td>
+                <button class="btn btn-info me-1" (click)="edit(data)" data-toggle="modal" data-target="#myModal">Edit</button>
+                <button class="btn btn-danger "  (click)="deletestudent(data.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <form [formGroup]="formValue">
+         
+            <input type="text" id="name" formControlName="name" placeholder="Enter name" class="form-control">
+            <input type="text" id="email" formControlName="email" placeholder="Enter name" class="form-control">
+            <input type="text" id="mobile" formControlName="mobile" placeholder="Enter name" class="form-control">
+            <input type="text" id="city" formControlName="city" placeholder="Enter name" class="form-control">
+        </form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger me-1" data-dismiss="modal">Close</button>
+          <button class="btn btn-success me-1" (click)="addstudent()" *ngIf="showadd">Add</button>
+          <button class="btn btn-info" *ngIf="showupdate" (click)="updat()">Update</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
